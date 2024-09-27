@@ -12,6 +12,8 @@ import TodoPage from './pages/TodoPage';
 import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
 import SignUp from './pages/Signup';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth();
@@ -27,6 +29,7 @@ function App() {
   return (
     <AuthProvider>
       <Router>
+        <ToastContainer />
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />

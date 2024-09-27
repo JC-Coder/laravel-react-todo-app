@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -15,15 +16,18 @@ const Login = () => {
         navigate('/profile');
       }
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await login(email, password);
+      toast.success('Login successful');
       navigate('/profile');
     } catch (error) {
       console.error('Login failed:', error);
+      toast.error('Invalid email or password');
     }
   };
 

@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
+import { toast } from 'react-toastify';
 
 const SignUp = () => {
   const [name, setName] = useState('');
@@ -23,9 +24,11 @@ const SignUp = () => {
     e.preventDefault();
     try {
       await signUp(name, email, password);
+      toast.success('Registration successful');
       navigate('/profile');
     } catch (error) {
       console.error('Registration failed:', error);
+      toast.error('Registration failed , try again');
     }
   };
 

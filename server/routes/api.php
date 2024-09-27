@@ -14,10 +14,9 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/health', [HealthController::class, 'check']);
 
 
-function authRoutes()
+function userRoutes()
 {
     return [
-        Route::post('/logout', [AuthController::class, 'logout']),
         Route::get('/me', [AuthController::class, 'user']),
     ];
 }
@@ -35,6 +34,6 @@ function todoRoutes()
 
 
 Route::middleware(['auth:sanctum', 'check.auth'])->group(function () {
-    authRoutes();
+    userRoutes();
     todoRoutes();
 });
